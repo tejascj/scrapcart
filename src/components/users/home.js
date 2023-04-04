@@ -41,7 +41,7 @@ function Home() {
         e.preventDefault();
         console.log(useremail, userpassword);
         try {
-            fetch('https://scrapcart.vercel.app/userlogin', {
+            fetch('https://scrapcart-ai.vercel.app/userlogin', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
