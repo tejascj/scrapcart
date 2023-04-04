@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
+
 function Placeorder() {
     const [showModal, setShowModal] = useState(false);
     const [addressList, setAddressList] = useState([]);
@@ -8,7 +9,7 @@ function Placeorder() {
     const [showaddaddress, setShowaddaddress] = useState(false);
     const [categories, setCategories] = useState([]);
     const [selectedWasteTypes, setSelectedWasteTypes] = useState([]);
-    console.log(process.env.gooleapi);
+    console.log(process.env.REACT_APP_backend_url);
     const handleWasteTypeChange = (event) => {
         const options = event.target.options;
         const selectedValues = [];
