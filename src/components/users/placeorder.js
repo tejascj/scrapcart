@@ -52,7 +52,7 @@ function Placeorder() {
         console.log('add address');
         e.preventDefault();
         try {
-            fetch('https://scrapcart-ai.vercel.app/users/addaddress', {
+            fetch('https://brainy-fly-handkerchief.cyclic.app/users/addaddress', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

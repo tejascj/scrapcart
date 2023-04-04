@@ -41,7 +41,7 @@ function Home() {
         e.preventDefault();
         console.log(useremail, userpassword);
         try {
-            fetch('https://brainy-fly-handkerchief.cyclic.app//userlogin', {
+            fetch('https://brainy-fly-handkerchief.cyclic.app/userlogin', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Home() {
         e.preventDefault();
         if (password === password_confirm) {
             try {
-                fetch('https://scrapcart-ai.vercel.app/userregister', {
+                fetch('https://brainy-fly-handkerchief.cyclic.app/userregister', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
