@@ -5,7 +5,7 @@ function Orders() {
     // fetch orders from database
     const [orders, setOrders] = useState([]);
     const fetchoreders = async () => {
-        const response = await fetch(`http://localhost:3001/fetchorders?email=${email}`);
+        const response = await fetch(`https://scrapcart-ai.vercel.app//fetchorders?email=${email}`);
         const data = await response.json();
         console.log(data);
         setOrders(data);
@@ -18,7 +18,7 @@ function Orders() {
     const Handlecancelorder = async (order) => {
         console.log(order);
         setCancelorderid(order._id);
-        const response = await fetch(`http://localhost:3001/cancel-orders`, {
+        const response = await fetch(`https://scrapcart-ai.vercel.app//cancel-orders`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
