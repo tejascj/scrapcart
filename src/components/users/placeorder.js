@@ -80,7 +80,7 @@ function Placeorder() {
     const loadGoogleMapsScript = () => {
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.gooleapi}&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_backend_url}&libraries=places`;
         script.async = true;
         document.body.appendChild(script);
 
