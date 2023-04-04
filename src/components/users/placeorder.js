@@ -9,7 +9,6 @@ function Placeorder() {
     const [showaddaddress, setShowaddaddress] = useState(false);
     const [categories, setCategories] = useState([]);
     const [selectedWasteTypes, setSelectedWasteTypes] = useState([]);
-    console.log(process.env.REACT_APP_backend_url);
     const handleWasteTypeChange = (event) => {
         const options = event.target.options;
         const selectedValues = [];
