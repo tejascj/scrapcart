@@ -17,7 +17,7 @@ function MyPayments() {
     const [branchName, setBranchName] = useState("");
     const email = Cookies.get('email');
     const fetchpayments = async () => {
-        const response = await fetch(`https://scrapcart-ai.vercel.app//fetchorders?email=${email}`);
+        const response = await fetch(`https://scrapcart-ai.vercel.app/fetchorders?email=${email}`);
         const data = await response.json();
         console.log(data);
         setPayments(data);
@@ -49,7 +49,7 @@ function MyPayments() {
         }
     };
     const fetchbanks = async () => {
-        const response = await fetch(`https://scrapcart-ai.vercel.app//get-user-data?email=${email}`);
+        const response = await fetch(`https://scrapcart-ai.vercel.app/get-user-data?email=${email}`);
         const data = await response.json();
         console.log("bank:", data[0].bankdetails);
         setUserbanks(data[0].bankdetails);
@@ -57,7 +57,7 @@ function MyPayments() {
     const handleAddPayment = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`https://scrapcart-ai.vercel.app//add-bank-details`, {
+            const response = await fetch(`https://scrapcart-ai.vercel.app/add-bank-details`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -93,7 +93,7 @@ function MyPayments() {
     const handlebankupdate = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`https://scrapcart-ai.vercel.app//update-bank-details`, {
+            const response = await fetch(`https://scrapcart-ai.vercel.app/update-bank-details`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -117,7 +117,7 @@ function MyPayments() {
     }
     const handleremovebank = async () => {
         try {
-            const response = await fetch(`https://scrapcart-ai.vercel.app//remove-bank-details`, {
+            const response = await fetch(`https://scrapcart-ai.vercel.app/remove-bank-details`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

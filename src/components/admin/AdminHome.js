@@ -33,7 +33,7 @@ function AdminHome() {
         e.preventDefault();
         console.log(useremail, userpassword);
         try {
-            fetch('https://scrapcart-ai.vercel.app//adminlogin', {
+            fetch('https://scrapcart-ai.vercel.app/adminlogin', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

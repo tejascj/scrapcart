@@ -24,7 +24,7 @@ function Placeorder() {
 
     const fetchAddresses = async () => {
         try {
-            const response = await fetch(`https://scrapcart-ai.vercel.app//get-user-data?email=${userEmail}`);
+            const response = await fetch(`https://scrapcart-ai.vercel.app/get-user-data?email=${userEmail}`);
             const data = await response.json();
 
             setAddressList(data[0].address);
@@ -34,7 +34,7 @@ function Placeorder() {
     };
     const fetchCategories = async () => {
         try {
-            const response = await fetch('https://scrapcart-ai.vercel.app//get-categories');
+            const response = await fetch('https://scrapcart-ai.vercel.app/get-categories');
             const data = await response.json();
 
             setCategories(data);
@@ -52,7 +52,7 @@ function Placeorder() {
         console.log('add address');
         e.preventDefault();
         try {
-            fetch('https://scrapcart-ai.vercel.app//users/addaddress', {
+            fetch('https://scrapcart-ai.vercel.app/users/addaddress', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

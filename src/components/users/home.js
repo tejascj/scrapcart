@@ -69,7 +69,7 @@ function Home() {
         e.preventDefault();
         if (password === password_confirm) {
             try {
-                fetch('https://scrapcart-ai.vercel.app//userregister', {
+                fetch('https://scrapcart-ai.vercel.app/userregister', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

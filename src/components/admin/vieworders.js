@@ -5,7 +5,7 @@ import { faTrash, faTruck } from '@fortawesome/free-solid-svg-icons';
 function Vieworder() {
     const [orders, setOrders] = useState([]);
     const fetchallorders = async () => {
-        const response = await fetch(`https://scrapcart-ai.vercel.app//fetchallorders`);
+        const response = await fetch(`https://scrapcart-ai.vercel.app/fetchallorders`);
         const data = await response.json();
         console.log(data);
         setOrders(data);
