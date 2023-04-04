@@ -33,7 +33,7 @@ function AdminHome() {
         e.preventDefault();
         console.log(useremail, userpassword);
         try {
-            fetch('http://192.168.29.204:3001/adminlogin', {
+            fetch('http://localhost:3001/adminlogin', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

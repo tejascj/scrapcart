@@ -69,7 +69,7 @@ function Home() {
         e.preventDefault();
         if (password === password_confirm) {
             try {
-                fetch('http://192.168.29.204:3001/userregister', {
+                fetch('http://localhost:3001/userregister', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

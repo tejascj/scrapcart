@@ -5,7 +5,7 @@ import { faTrash, faTruck } from '@fortawesome/free-solid-svg-icons';
 function Vieworder() {
     const [orders, setOrders] = useState([]);
     const fetchallorders = async () => {
-        const response = await fetch(`http://192.168.29.204:3001/fetchallorders`);
+        const response = await fetch(`http://localhost:3001/fetchallorders`);
         const data = await response.json();
         console.log(data);
         setOrders(data);

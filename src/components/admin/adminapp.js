@@ -12,7 +12,7 @@ function AdminApp(props) {
     console.warn("name", name);
     e.preventDefault();
     try {
-      let result = fetch("http://192.168.29.204:3001/add-category", {
+      let result = fetch("http://localhost:3001/add-category", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

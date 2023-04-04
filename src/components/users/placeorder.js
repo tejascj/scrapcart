@@ -24,7 +24,7 @@ function Placeorder() {
 
     const fetchAddresses = async () => {
         try {
-            const response = await fetch(`http://192.168.29.204:3001/get-user-data?email=${userEmail}`);
+            const response = await fetch(`http://localhost:3001/get-user-data?email=${userEmail}`);
             const data = await response.json();
 
             setAddressList(data[0].address);
@@ -34,7 +34,7 @@ function Placeorder() {
     };
     const fetchCategories = async () => {
         try {
-            const response = await fetch('http://192.168.29.204:3001/get-categories');
+            const response = await fetch('http://localhost:3001/get-categories');
             const data = await response.json();
 
             setCategories(data);
@@ -52,7 +52,7 @@ function Placeorder() {
         console.log('add address');
         e.preventDefault();
         try {
-            fetch('http://192.168.29.204:3001/users/addaddress', {
+            fetch('http://localhost:3001/users/addaddress', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ function Placeorder() {
         console.log('form submitted');
 
         try {
-            fetch('http:////192.168.29.204:3001/place-order', {
+            fetch('http:////localhost:3001/place-order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
