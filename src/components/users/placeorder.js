@@ -24,7 +24,7 @@ function Placeorder() {
 
     const fetchAddresses = async () => {
         try {
-            const response = await fetch(`https://scrapcart-ai.vercel.app/get-user-data?email=${userEmail}`);
+            const response = await fetch(`https://brainy-fly-handkerchief.cyclic.app/get-user-data?email=${userEmail}`);
             const data = await response.json();
 
             setAddressList(data[0].address);
@@ -34,7 +34,7 @@ function Placeorder() {
     };
     const fetchCategories = async () => {
         try {
-            const response = await fetch('https://scrapcart-ai.vercel.app/get-categories');
+            const response = await fetch('https://brainy-fly-handkerchief.cyclic.app/get-categories');
             const data = await response.json();
 
             setCategories(data);
