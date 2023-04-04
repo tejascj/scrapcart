@@ -5,7 +5,6 @@ import Navbar from './components/navbar';
 import Dashboard from './components/users/dashboard';
 import Orders from './components/users/orders';
 import PlaceOrder from './components/users/placeorder';
-import { AddAddress } from './components/users/addaddress';
 import Admindashboard from './components/admin/adminapp';
 import MyPayments from './components/users/mypayments';
 
@@ -26,7 +25,6 @@ function App(props) {
               <Route path="/" Component={Dashboard} />
               <Route path="/orders" Component={Orders} />
               <Route path="/placeorder" Component={PlaceOrder} />
-              <Route path="/addaddress" Component={AddAddress} />
               <Route path="/admindashboard" Component={Admindashboard} />
               <Route path="/mypayments" Component={MyPayments} />
               

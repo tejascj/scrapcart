@@ -8,6 +8,7 @@ function Placeorder() {
     const [showaddaddress, setShowaddaddress] = useState(false);
     const [categories, setCategories] = useState([]);
     const [selectedWasteTypes, setSelectedWasteTypes] = useState([]);
+    console.log(process.env.gooleapi);
     const handleWasteTypeChange = (event) => {
         const options = event.target.options;
         const selectedValues = [];
@@ -78,7 +79,7 @@ function Placeorder() {
     const loadGoogleMapsScript = () => {
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyATW1gGZVpKfaBHlW1C8i4UKiIYohH-SWQ&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.gooleapi}&libraries=places`;
         script.async = true;
         document.body.appendChild(script);
 
