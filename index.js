@@ -298,7 +298,7 @@ app.post('/remove-bank-details', async (req, res) => {
 // create an endpoint to check if the onlineuri mongobd connection is valid
 const onlineuri = process.env.onlineuri;
 console.log(onlineuri);
-app.get('/check', async (req, res) => {
+app.get('/api/check', async (req, res) => {
     try {
         const client = new MongoClient(onlineuri, options);
         await client.connect();
