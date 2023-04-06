@@ -5,6 +5,7 @@ import Sidebar from "./sidebar";
 import Admindashboard from "./admindashboard";
 import Vieworder from "./vieworders";
 import Viewpayments from "./viewpayments";
+import Drivers from "./drivers";
 function AdminApp(props) {
   const [name, setName] = useState('');
 
@@ -47,10 +48,7 @@ function AdminApp(props) {
             <Route path="/" Component={Admindashboard} />
             <Route path="/vieworders" Component={Vieworder} />
             <Route path="/viewpayments" Component={Viewpayments} />
-            {/* <Route path="/placeorder" Component={PlaceOrder} />
-            <Route path="/addaddress" Component={AddAddress} />
-            <Route path="/admindashboard" Component={Admindashboard} />
-            <Route path="/mypayments" Component={MyPayments} /> */}
+            <Route path="/drivers" Component={Drivers} />
 
             </Routes>
           </div>
