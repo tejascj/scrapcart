@@ -1,7 +1,7 @@
-import Cookies from 'js-cookie';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Button } from 'react-bootstrap';
 function Vieworder() {
     const [orders, setOrders] = useState([]);
     const fetchallorders = async () => {
@@ -10,8 +10,22 @@ function Vieworder() {
         console.log(data);
         setOrders(data);
     }
+    const [drivers, setDrivers] = useState([]);
+    const getDrivers = () => {
+        try {
+            fetch("https://brainy-fly-handkerchief.cyclic.app/get-drivers")
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    setDrivers(data.data);
+                });
+        } catch (e) {
+            console.warn("error", e);
+        }
+    };
     useEffect(() => {
         fetchallorders();
+        getDrivers();
     }, []);
     const [selectedOrders, setSelectedOrders] = useState([]);
 
@@ -25,6 +39,38 @@ function Vieworder() {
         }
     };
     console.log(selectedOrders);
+
+    const [selectedDriver, setSelectedDriver] = useState("");
+    const [showassignmodal, setShowassignmodal] = useState(false);
+    const handleAssignOrders = () => {
+        console.log(selectedOrders, selectedDriver);
+        try {
+            fetch("https://brainy-fly-handkerchief.cyclic.app/assign-orders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    orderids: selectedOrders,
+                    driverid: selectedDriver,
+                }),
+            })
+
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.status === "success") {
+                        setShowassignmodal(false)
+                        fetchallorders();
+                    } else {
+                        alert("Orders not assigned");
+                    }
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div>
             <h1>View Orders</h1>
@@ -40,12 +86,83 @@ function Vieworder() {
                                 </h2>
                                 <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                     <div className="accordion-body">
-                                        <div className=" ">
+                                        <div>
                                             <div>
-                                                <button className="btn btn-primary " disabled={!selectedOrders.length}><FontAwesomeIcon icon={faTruck} /> Assign to Driver</button>
-                                                
-                                                {/* create a button to cancel button with icon for that */}
-                                                <button className='btn btn-danger' disabled={!selectedOrders.length}><FontAwesomeIcon icon={faTrash} /> Cancel Orders</button>
+                                                <button className="btn btn-primary m-1" disabled={!selectedOrders.length} onClick={(e) => setShowassignmodal(true)}><FontAwesomeIcon icon={faTruck} /> Assign to Driver</button>
+
+                                                {/*open modal where a drop is given with all drivers names and below with a table of select orders  */}
+                                                <Modal show={showassignmodal} onHide={() => setShowassignmodal(false)} size="xl">
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Assign Orders</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <div className="form-group">
+                                                            <label htmlFor="driver">Select Driver</label>
+                                                            <select
+                                                                className="form-control"
+                                                                id="driver"
+                                                                value={selectedDriver}
+                                                                onChange={(e) => setSelectedDriver(e.target.value)}
+                                                            >
+                                                                <option value="">Select Driver</option>
+                                                                {drivers.map((driver) => (
+                                                                    <option key={driver._id} value={driver._id}>
+                                                                        {driver.drivername}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                            <h2>Selected orders</h2>
+                                                            <div className="table-responsive">
+                                                                <table className="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Date</th>
+                                                                            <th scope="col">Time</th>
+                                                                            <th scope="col">Address</th>
+                                                                            <th scope="col">Waste Types</th>
+                                                                            <th scope="col">Weight</th>
+                                                                            <th scope="col">Amount</th>
+                                                                            <th scope="col">Status</th>
+                                                                            <th scope="col">Driver Name</th>
+                                                                            <th scope="col">Driver Number</th>
+                                                                            <th scope="col">Payment Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {orders.filter(order => selectedOrders.includes(order._id)).map((order, index) => {
+                                                                            return (
+                                                                                <tr key={order._id}>
+                                                                                    <th scope="row">{index + 1}</th>
+                                                                                    <td>{order.date}</td>
+                                                                                    <td>{order.time}</td>
+                                                                                    <td>{order.address}</td>
+                                                                                    <td>{order.wasteTypes.join(", ")}</td>
+                                                                                    <td>{order.weight}</td>
+                                                                                    <td>{order.amount}</td>
+                                                                                    <td>{order.status}</td>
+                                                                                    <td>{order.drivername}</td>
+                                                                                    <td>{order.drivernumber}</td>
+                                                                                    <td>{order.paymentstatus}</td>
+                                                                                </tr>
+                                                                            );
+                                                                        })}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={() => setShowassignmodal(false)}>
+                                                            Close
+                                                        </Button>
+                                                        <Button variant="primary" onClick={() => handleAssignOrders()}>
+                                                            Save Changes
+                                                        </Button>
+                                                    </Modal.Footer>
+                                                </Modal>
                                             </div>
                                             <div className="table-responsive">
                                                 <table className="table">
@@ -66,7 +183,7 @@ function Vieworder() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {orders.filter(order => order.status === "ongoing").map((order, index) => {
+                                                        {orders.filter(order => order.status !== "complete" && order.status !== "cancelled").map((order, index) => {
                                                             return (
                                                                 <tr key={order._id}>
                                                                     <th scope="row">{index + 1}</th>
@@ -128,7 +245,7 @@ function Vieworder() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {orders.filter(order => order.status !== "ongoing").map((order, index) => {
+                                                        {orders.filter(order => order.status === "cancelled" || order.status === "completed").map((order, index) => {
                                                             return (
                                                                 <tr key={order._id}>
                                                                     <th scope="row">{index + 1}</th>

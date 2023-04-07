@@ -47,7 +47,7 @@ function Placeorder() {
     const addressInputRef = useRef(null);
     const [tag, setTag] = useState('');
     const [address, setAddress] = useState('');
-    const [link, setLink] = useState('');
+    const [url, setUrl] = useState('');
     const handleAddAddress = (e) => {
         console.log('add address');
         e.preventDefault();
@@ -61,7 +61,7 @@ function Placeorder() {
                     email: userEmail,
                     address: address,
                     tag: tag,
-                    link: link
+                    url: url
                 })
             })
                 .then((response) => response.json())
@@ -79,7 +79,7 @@ function Placeorder() {
     const loadGoogleMapsScript = () => {
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_backend_url}&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_googleapi}&libraries=places`;
         script.async = true;
         document.body.appendChild(script);
 
@@ -99,7 +99,7 @@ function Placeorder() {
                     const type = component.types[0];
                     addressComponents[type] = component.long_name;
                 });
-                setLink(link);
+                setUrl(link);
                 setAddress(address);
                 addressInputRef.current.value = address;
             });
@@ -118,9 +118,10 @@ function Placeorder() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('form submitted');
-
+        const addresslink=selectedAddress.url;
+        console.log(addresslink);
         try {
-            fetch('http:////localhost:3001/place-order', {
+            fetch('https://brainy-fly-handkerchief.cyclic.app/place-order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -128,7 +129,8 @@ function Placeorder() {
                 body: JSON.stringify({
                     email: userEmail,
                     phone: phone,
-                    address: selectedAddress,
+                    address: selectedAddress.address,
+                    addressurl:addresslink,
                     wasteTypes: selectedWasteTypes,
                     date: document.getElementById('date').value,
                     time: selectedTime,
@@ -212,7 +214,7 @@ function Placeorder() {
                                     aria-expanded="false"
                                     style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "100%" }}
                                 >
-                                    {selectedAddress ? selectedAddress : "Select Address"}
+                                    {selectedAddress ? selectedAddress.address : "Select Address"}
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="addressDropdown" style={{ overflow: "auto", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "100%" }}>
                                     {addressList && addressList.length === 0 ? (
@@ -221,7 +223,7 @@ function Placeorder() {
                                         <>
                                             {addressList && addressList.map((address) => (
                                                 <li key={address.address}>
-                                                    <button className="dropdown-item" type="button" onClick={() => setSelectedAddress(address.address)}>
+                                                    <button className="dropdown-item" type="button" onClick={() => setSelectedAddress(address)}>
                                                         <span >{address.address}</span>
                                                     </button>
                                                 </li>

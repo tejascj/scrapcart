@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse,faTable,faFileInvoiceDollar, faTruck } from '@fortawesome/free-solid-svg-icons'
+import { faHouse,faTable,faFileInvoiceDollar, faTruck, faBox } from '@fortawesome/free-solid-svg-icons'
 
 function Sidebar(props) {
   const [name, setName] = useState(Cookies.get('adminname'));
@@ -19,9 +19,15 @@ function Sidebar(props) {
             <FontAwesomeIcon icon={faHouse} /> <span className="ms-1 d-none d-sm-inline">Dashboard</span>
             </Link>
           </li>
+          {/* add category button */}
+          <li className="nav-item">
+            <Link className="nav-link" to="/admin/categories" >
+            <FontAwesomeIcon icon={faTable} /> <span className="ms-1 d-none d-sm-inline">Categories</span>
+            </Link>
+          </li>
           <li className="nav-item">
             <Link className="nav-link" to="/admin/vieworders">
-            <FontAwesomeIcon icon={faTable} /> <span className="ms-1 d-none d-sm-inline">Orders</span>
+            <FontAwesomeIcon icon={faBox} /> <span className="ms-1 d-none d-sm-inline">Orders</span>
             </Link>
           </li>
           <li className="nav-item">

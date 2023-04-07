@@ -1,11 +1,11 @@
 import { Link,Routes,Route } from "react-router-dom";
 import { useState } from "react";
-import Cookies from "js-cookie";
 import Sidebar from "./sidebar";
 import Admindashboard from "./admindashboard";
 import Vieworder from "./vieworders";
 import Viewpayments from "./viewpayments";
 import Drivers from "./drivers";
+import Category from "./category";
 function AdminApp(props) {
   const [name, setName] = useState('');
 
@@ -46,6 +46,7 @@ function AdminApp(props) {
           <div className='col-10'>
             <Routes>
             <Route path="/" Component={Admindashboard} />
+            <Route path="/categories" Component={Category} />
             <Route path="/vieworders" Component={Vieworder} />
             <Route path="/viewpayments" Component={Viewpayments} />
             <Route path="/drivers" Component={Drivers} />
