@@ -19,7 +19,6 @@ function MyPayments() {
     const fetchpayments = async () => {
         const response = await fetch(`https://brainy-fly-handkerchief.cyclic.app/fetchorders?email=${email}`);
         const data = await response.json();
-        console.log(data);
         setPayments(data);
     }
     useEffect(() => {
@@ -342,6 +341,12 @@ function MyPayments() {
                                                         )
                                                     }
                                                     )}
+                                                    {/* If no order is filtered display No payment Initiated */}
+                                                    {payments.filter(payment => payment.paymentstatus === "Initiated").length === 0 ? (
+                                                        <tr>
+                                                            <td colSpan="6" className="text-center">No Payment Initiated</td>
+                                                        </tr>
+                                                    ) : null}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -371,7 +376,7 @@ function MyPayments() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {payments.filter(payment => payment.paymentstatus === "Completed" || payment.paymentstatus==="cancelled").map((payment, index) => {
+                                                    {payments.filter(payment => payment.paymentstatus === "Paid" || payment.paymentstatus==="Cancelled").map((payment, index) => {
                                                         return (
                                                             <tr key={index}>
                                                                 <th scope="row">{payment._id}</th>
@@ -384,6 +389,12 @@ function MyPayments() {
                                                         )
                                                     }
                                                     )}
+                                                    {/* If no order is filtered display No payment Initiated */}
+                                                    {payments.filter(payment => payment.paymentstatus === "Paid" || payment.paymentstatus==="Cancelled").length === 0 ? (
+                                                        <tr>
+                                                            <td colSpan="6" className="text-center">No Payment Initiated</td>
+                                                        </tr>
+                                                    ) : null}
                                                 </tbody>
                                             </table>
                                         </div>
