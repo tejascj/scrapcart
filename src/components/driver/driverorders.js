@@ -99,8 +99,8 @@ function Driverorders() {
             const data = await response.json();
             console.log(data);
             if (data.status === "success") {
-                alert("Order details submitted successfully");
                 closeshow();
+                fetchOrders();
             }
             else {
                 alert("Something went wrong");
