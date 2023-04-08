@@ -3,7 +3,7 @@ import { useState } from "react";
 import Sidebar from "./sidebar";
 import Driverdashboard from "./driverdashboard";
 import Driverorders from "./driverorders";
-import Driverpayments from "./driverpayments";
+
 
 function DriverApp(props) {
   const [name, setName] = useState('');
@@ -26,7 +26,7 @@ function DriverApp(props) {
             <Routes>
             <Route path="/" Component={Driverdashboard} />
             <Route path="/orders" Component={Driverorders} />
-            <Route path="/payments" Component={Driverpayments} />
+           
             </Routes>
           </div>
         </div>

@@ -371,7 +371,7 @@ function MyPayments() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {payments.filter(payment => payment.paymentstatus !== "Initiated").map((payment, index) => {
+                                                    {payments.filter(payment => payment.paymentstatus === "Completed" || payment.paymentstatus==="cancelled").map((payment, index) => {
                                                         return (
                                                             <tr key={index}>
                                                                 <th scope="row">{payment._id}</th>

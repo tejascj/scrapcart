@@ -32,6 +32,36 @@
   text-align: center;
 }
 
+/* Custom CSS for cards */
+.custom-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.custom-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.custom-card .card-body {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.custom-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.custom-card .card-text {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
 
 
 

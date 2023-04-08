@@ -63,7 +63,7 @@ function Orders() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {orders.filter(order => order.status === "ongoing").map((order, index) => {
+                                                    {orders.filter(order => order.status !== "Completed" && order.status!=="cancelled").map((order, index) => {
                                                         return (
                                                             <tr>
                                                                 <th scope="row">{index + 1}</th>
@@ -75,6 +75,7 @@ function Orders() {
                                                             </tr>
                                                         )
                                                     })}
+                                                    {orders.filter(order => order.status !== "Completed" || order.status==="cancelled").length === 0 && <tr><td colSpan="8" className="text-center">No Orders</td></tr>}
                                                 </tbody>
 
                                             </table>
@@ -107,7 +108,8 @@ function Orders() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {orders.filter(order => order.status !== "ongoing").map((order, index) => {
+                                                    {/* if no orders after filtering display No orders */}
+                                                    {orders.filter(order => order.status === "Completed" || order.status==="cancelled").map((order, index) => {
                                                         return (
                                                             <tr>
                                                                 <th scope="row">{index + 1}</th>
@@ -121,6 +123,7 @@ function Orders() {
                                                             </tr>
                                                         )
                                                     })}
+                                                    {orders.filter(order => order.status === "Completed" || order.status==="cancelled").length === 0 && <tr><td colSpan="8" className="text-center">No Orders</td></tr>}
                                                 </tbody>
 
                                             </table>

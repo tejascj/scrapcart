@@ -85,7 +85,7 @@ function Driverorders() {
         const amount = totalAmount;
         console.log(orderid, weight, amount);
         try {
-            const response = await fetch('https://brainy-fly-handkerchief.cyclic.app/complete-order', {
+            const response = await fetch('https://brainy-fly-handkerchief.cyclic.app/update-paymentstatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -112,6 +112,7 @@ function Driverorders() {
     return (
             <div>
                 <h1>Driver Orders</h1>
+                <div className='table-responsive'>
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -129,7 +130,7 @@ function Driverorders() {
                     </thead>
                     <tbody>
                         {/* filter the order where driverid is equal to driverid in the data stored */}
-                        {orders.filter((order) => order.drivername === drivername).map((order, index) => {
+                        {orders.filter((order) => order.drivername === drivername && order.status!=="Completed").map((order, index) => {
                             return (
                                 <tr key={index}>
                                     <th scope="row">{index + 1}</th>
@@ -147,8 +148,13 @@ function Driverorders() {
                                 </tr>
                             )
                         })}
+                        {/* display No New assigned orders if no orders are there when filtered */}
+                        {orders.filter((order) => order.drivername === drivername && order.status!=="Completed").length === 0 && <tr><td colSpan="10">No New Assigned Orders</td></tr>}
                     </tbody>
                 </table>
+                </div>
+                
+                
                 <Modal show={modal} onHide={closeshow}>
                     <Modal.Header closeButton>
                         <Modal.Title>Order Details</Modal.Title>

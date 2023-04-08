@@ -56,7 +56,7 @@ function Home() {
                         setIsLoggedin(true);
                         Cookies.set('email', data.email);
                         Cookies.set('name', data.name);
-
+                        Cookies.set('phone', data.phone);
                     } else {
                         alert("Login failed");
                     }
