@@ -183,7 +183,7 @@ function Vieworder() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {orders.filter(order => order.status !== "complete" && order.status !== "cancelled").map((order, index) => {
+                                                        {orders.filter(order => order.status !== "Complete" && order.status !== "cancelled").map((order, index) => {
                                                             return (
                                                                 <tr key={order._id}>
                                                                     <th scope="row">{index + 1}</th>
