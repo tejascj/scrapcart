@@ -372,7 +372,7 @@ function MyPayments() {
                                                         <th scope="col">Amount</th>
                                                         <th scope="col">Payment Status</th>
                                                         <th scope="col">Order Status</th>
-                                                        <th scope="col">Action</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -384,7 +384,7 @@ function MyPayments() {
                                                                 <td>{payment.amount}</td>
                                                                 <td>{payment.paymentstatus}</td>
                                                                 <td>{payment.status}</td>
-                                                                <td><button className="btn btn-danger" >Need Support</button></td>
+                                                                
                                                             </tr>
                                                         )
                                                     }
